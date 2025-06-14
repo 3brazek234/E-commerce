@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+body {
+  font-family: "Cairo", sans-serif;
+  user-select: none;
+}
+.center { 
+  display: flex;
+  justify-content: center;
+
+}
+.bg-purple {
+  background-color: #6d4aae;
+}
+.main-container {
+  padding: 12px 20px;
+
+}
+input {
+  all: unset;
+}
+.input-bg {
+  background-color: #E5E5E5;
+  padding: 10px;
+}
