@@ -1,6 +1,7 @@
 import logo from "../../assets/logo.jpg";
-import { CiSearch } from "react-icons/ci";
 import { GiShoppingCart } from "react-icons/gi";
+import SearchNav from "../../ui/SearchNav";
+import LocationButton from "../../ui/LocationButton";
 
 const Header = () => {
   return (
@@ -18,18 +19,8 @@ const Header = () => {
           </div>
 
           <div className="col-span-2 flex gap-4 items-center">
-            <button className="bg-white text-slate-400 p-2 rounded-md border border-gray-200 transition hover:bg-[#F6FAFD] hover:scale-105">
-              Location
-            </button>
-
-            <div className="relative flex-1">
-              <input
-                type="text"
-                placeholder="Search for products"
-                className="w-full pr-10 py-2 border rounded input-bg"
-              />
-              <CiSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-black font-bold" />
-            </div>
+            <LocationButton/>
+            <SearchNav />
           </div>
 
           <div className="sign">
