@@ -1,12 +1,29 @@
 import { RouterProvider } from "react-router-dom";
+import { Suspense } from "react";
 import "./App.css";
 import routes from "./Routes/routes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 export default function App() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: 2,
+        staleTime: 5 * 60 * 1000,
+      },
+    },
+  });
+
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={routes} />
+      <Suspense
+        fallback={
+          <div className="theme-base flex justify-center items-center min-h-screen">
+            <div className="text-xl animate-pulse">Loading...</div>
+          </div>
+        }
+      >
+        <RouterProvider router={routes} />
+      </Suspense>
     </QueryClientProvider>
   );
 }

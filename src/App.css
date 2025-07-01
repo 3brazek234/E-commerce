@@ -9,24 +9,323 @@
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 body {
   font-family: "Cairo", sans-serif;
+  font-family: "Cairo", sans-serif;
   user-select: none;
 }
-.center { 
+.theme-base {
+  @apply bg-white text-gray-900;
+}
+
+.dark .theme-base {
+  @apply bg-gray-900 text-white;
+}
+.center {
   display: flex;
   justify-content: center;
-
+}
+.between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .bg-purple {
   background-color: #6d4aae;
 }
 .main-container {
-  padding: 12px 20px;
-
+  padding: 12px 20px; 
 }
 input {
   all: unset;
 }
 .input-bg {
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
   padding: 10px;
 }
+.boreder-btn {
+  border-bottom: 1px solid rgb(0, 0, 0, 1);
+  padding-bottom: 10px;
+}
+.submenu {
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease-in-out;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  z-index: 1000;
+  padding: 8px 0;
+  backdrop-filter: blur(10px);
+}
+
+.menu:hover .submenu {
+  display: block;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.submenu:hover {
+  display: block;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.submenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.submenu li {
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.submenu li:last-child {
+  border-bottom: none;
+}
+
+.submenu li:hover {
+  background-color: #f8fafc;
+  color: #7a55c1;
+  padding-left: 25px;
+}
+
+/* Dark mode support for submenu */
+.dark .submenu {
+  background: #1f2937;
+  border-color: #374151;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.dark .submenu li {
+  color: #d1d5db;
+  border-bottom-color: #374151;
+}
+
+.dark .submenu li:hover {
+  background-color: #374151;
+  color: #a78bfa;
+}
+/* Swiper Styles */
+.swiper-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.mySwiper {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-image {
+  width: 100% !important;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+/* Navigation Buttons */
+.swiper-button-prev,
+.swiper-button-next {
+  color: #ffffff !important;
+  background: rgba(122, 85, 193, 0.8);
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background: rgba(122, 85, 193, 1);
+  transform: scale(1.1);
+  color: #ffffff !important;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px !important;
+  font-weight: bold;
+}
+
+/* Pagination */
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5) !important;
+  opacity: 1 !important;
+  width: 12px !important;
+  height: 12px !important;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background: #7a55c1 !important;
+  transform: scale(1.2);
+}
+
+.swiper-pagination {
+  bottom: 20px !important;
+}
+
+/* Swiper Controls */
+.swiper-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.control-btn {
+  padding: 10px 16px;
+  background: #7a55c1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Cairo", sans-serif;
+}
+
+.control-btn:hover {
+  background: #6d4aae;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(122, 85, 193, 0.3);
+}
+
+.control-btn:active {
+  transform: translateY(0);
+}
+
+.prepend-btn {
+  background: #10b981;
+}
+
+.prepend-btn:hover {
+  background: #059669;
+}
+
+.append-btn {
+  background: #f59e0b;
+}
+
+.append-btn:hover {
+  background: #d97706;
+}
+
+/* Dark mode for controls */
+.dark .control-btn {
+  background: #a78bfa;
+  color: #1f2937;
+}
+
+.dark .control-btn:hover {
+  background: #8b5cf6;
+}
+
+.dark .prepend-btn {
+  background: #34d399;
+  color: #1f2937;
+}
+
+.dark .prepend-btn:hover {
+  background: #10b981;
+}
+
+.dark .append-btn {
+  background: #fbbf24;
+  color: #1f2937;
+}
+
+.dark .append-btn:hover {
+  background: #f59e0b;
+}
+
+/* Second Header Styles */
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.social-icon:hover::before {
+  left: 100%;
+}
+
+.twitter-icon {
+  background: linear-gradient(135deg, #1DA1F2, #0d8bd9);
+  color: white;
+}
+
+.twitter-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(29, 161, 242, 0.4);
+}
+
+.instagram-icon {
+  background: linear-gradient(135deg, #FEDA77, #DD2A7B, #8134AF, #515BD4);
+  color: white;
+}
+
+.instagram-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(221, 42, 123, 0.4);
+}
+
+.facebook-icon {
+  background: linear-gradient(135deg, #4267B2, #365899);
+  color: white;
+}
+
+.facebook-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(66, 103, 178, 0.4);
+}
+
+.youtube-icon {
+  background: linear-gradient(135deg, #FF0000, #cc0000);
+  color: white;
+}
+
+.youtube-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
+}
+

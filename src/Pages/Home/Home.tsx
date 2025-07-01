@@ -1,11 +1,10 @@
-import Header from "../../Components/Header/Header";
-import NavBar from "../../Components/NavBar/NavBar";
+import Swiper from "../../ui/Swiper";
+
 
 const Home = () => {
   return (
     <>
-      <Header />
-      <NavBar />
+      <Swiper/>
     </>
   );
 };
