@@ -1,58 +1,33 @@
-import { FaTwitter, FaInstagram, FaFacebook, FaYoutube, FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import SocialMediaIcons from "../../../ui/SocialMediaIcons";
 
 function SecondHeader() {
   return (
-    <div className="w-full bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200 shadow-sm hidden md:block">
-      <div className="container mx-auto px-4 py-3">
-        <div className="between">
+    <div className="w-full bg-gradient-to-r from-gray-50 via-white to-gray-50 border-b border-gray-200 shadow-sm hidden md:block">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
           {/* Social Media Icons */}
-          <div className="flex items-center gap-4">
-            <h3 className="text-sm font-semibold text-gray-700 mr-2">Follow Us:</h3>
-            <div className="flex items-center gap-3">
-              <a
-                href="#"
-                className="social-icon twitter-icon"
-                aria-label="Twitter"
-              >
-                <FaTwitter />
-              </a>
-              <a
-                href="#"
-                className="social-icon instagram-icon"
-                aria-label="Instagram"
-              >
-                <FaInstagram />
-              </a>
-              <a
-                href="#"
-                className="social-icon facebook-icon"
-                aria-label="Facebook"
-              >
-                <FaFacebook />
-              </a>
-              <a
-                href="#"
-                className="social-icon youtube-icon"
-                aria-label="YouTube"
-              >
-                <FaYoutube />
-              </a>
-            </div>
-          </div>
+        <SocialMediaIcons/>
 
           {/* Contact Information */}
-          <div className="hidden md:flex items-center gap-6 text-sm">
-            <div className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors">
-              <FaPhone className="text-green-500" />
-              <span>+1 (555) 123-4567</span>
+          <div className="hidden lg:flex items-center gap-8 text-sm">
+            <div className="flex items-center gap-3 text-gray-600 hover:text-purple-600 transition-all duration-300 group cursor-pointer">
+              <div className="p-2 rounded-full bg-green-100 group-hover:bg-green-200 transition-colors duration-300">
+                <FaPhone className="text-green-600 text-xs" />
+              </div>
+              <span className="font-medium">+1 (555) 123-4567</span>
             </div>
-            <div className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors">
-              <FaEnvelope className="text-blue-500" />
-              <span>info@yourstore.com</span>
+            <div className="flex items-center gap-3 text-gray-600 hover:text-purple-600 transition-all duration-300 group cursor-pointer">
+              <div className="p-2 rounded-full bg-blue-100 group-hover:bg-blue-200 transition-colors duration-300">
+                <FaEnvelope className="text-blue-600 text-xs" />
+              </div>
+              <span className="font-medium">info@yourstore.com</span>
             </div>
-            <div className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors">
-              <FaMapMarkerAlt className="text-red-500" />
-              <span>123 Store St, City</span>
+            <div className="flex items-center gap-3 text-gray-600 hover:text-purple-600 transition-all duration-300 group cursor-pointer">
+              <div className="p-2 rounded-full bg-red-100 group-hover:bg-red-200 transition-colors duration-300">
+                <FaMapMarkerAlt className="text-red-600 text-xs" />
+              </div>
+              <span className="font-medium">123 Store St, City</span>
             </div>
           </div>
         </div>

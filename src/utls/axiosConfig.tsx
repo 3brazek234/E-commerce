@@ -1,6 +1,4 @@
-// import axios from 'axios'
-// const axiosInstance = axios.create(
-//     {
-//         baseURL: 'https://countriesnow.space/api/v0.1/'
-//     }
-// )
+import axios from "axios";
+export const api = axios.create({
+  baseURL: "https://fakestoreapi.in/api",
+});

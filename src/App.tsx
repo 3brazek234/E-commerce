@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import "./App.css";
 import routes from "./Routes/routes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ToastContainer } from "react-toastify";
 export default function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -17,13 +18,14 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <Suspense
         fallback={
-          <div className="theme-base flex justify-center items-center min-h-screen">
+          <div className="flex justify-center items-center min-h-screen">
             <div className="text-xl animate-pulse">Loading...</div>
           </div>
         }
       >
         <RouterProvider router={routes} />
       </Suspense>
+      <ToastContainer />
     </QueryClientProvider>
   );
 }

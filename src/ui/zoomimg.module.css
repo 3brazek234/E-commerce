@@ -1,0 +1,25 @@
+.imageZoom {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  cursor: zoom-in;
+  border-radius: 20px;
+}
+
+.img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.imageZoom::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--url);
+  background-size: 200%;
+  background-position: var(--zoom-x) var(--zoom-y);
+  display: var(--display);
+  pointer-events: none;
+}

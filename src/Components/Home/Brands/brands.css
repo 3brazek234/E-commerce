@@ -1,0 +1,23 @@
+.brand-item {
+  position: relative;
+  background-color: #efeafd;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.brand-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background-color: #7a55c1;
+  transition: width 0.3s ease;
+}
+.brand-item:hover {
+  transform: translateY(-10px);
+  background-color: #dcccfb;
+}
+.brand-item:hover::before {
+  width: 100%;
+}

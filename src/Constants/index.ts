@@ -1,62 +1,43 @@
-import fash from "../assets/navbar-imgs/fash.png";
-import ele from "../assets/navbar-imgs/ele.png";
-import bags from "../assets/navbar-imgs/Bags.png";
-import groceries from "../assets/navbar-imgs/footwear.png";
-import footwear from "../assets/navbar-imgs/footwear.png";
-import beauty from "../assets/navbar-imgs/beauty.png";
-import type { NavItem } from "./interfaces";
+import type { NavItem } from "../types/interfaces";
 import swipImg from "../assets/Main-swiper/file_1734525002307_1723967638078_slideBanner1.6bbeed1a0c8ffb494f7c.jpg";
 import swipImg1 from "../assets/Main-swiper/swiper.jpg";
 import swipImg2 from "../assets/Main-swiper/file_1734525014348_NewProject(7).jpg";
 import swipImg3 from "../assets/Main-swiper/file_1734524971122_NewProject(8).jpg";
+import vector1 from "../assets/Hero/Vector.png";
+import vector2 from "../assets/Hero/Vector (1).png";
+import vector3 from "../assets/Hero/Vector (4).png";
+import vector4 from "../assets/Hero/Vector (6).png";
+import vector6 from "../assets/Hero/fa-brands-1 (1).png";
+import vector7 from "../assets/Hero/fa-brands-2.png";
+
 export const NavItems: NavItem[] = [
   {
-    label: "Fashion",
-    src: fash,
-    subItems: [
-      { label: "Men's Clothing", link: "/mens-clothing" },
-      { label: "Women's Clothing", link: "/womens-clothing" },
-    ],
+    label: "Home",
+    link: "/",
   },
   {
-    label: "Electronics",
-    src: ele,
-    subItems: [
-      { label: "Phones", link: "/phones" },
-      { label: "Laptops", link: "/laptops" },
-    ],
+    label: "Shop",
+    link: "/product",
   },
   {
-    label: "Bags",
-    src: bags,
-    subItems: [
-      { label: "Phones", link: "/phones" },
-      { label: "Laptops", link: "/laptops" },
-    ],
+    label: "Blog",
+    link: "/blog",
   },
   {
-    label: "Groceries",
-    src: groceries,
-    subItems: [
-      { label: "Phones", link: "/phones" },
-      { label: "Laptops", link: "/laptops" },
-    ],
+    label: "Contact",
+    link: "/contact",
   },
   {
-    label: "Footwear",
-    src: footwear,
-    subItems: [
-      { label: "Phones", link: "/phones" },
-      { label: "Laptops", link: "/laptops" },
-    ],
-  }, // Empty subItems if no submenu
+    label: "Order Tracking",
+    link: "/order-tracking",
+  },
   {
-    label: "Beauty",
-    src: beauty,
-    subItems: [
-      { label: "Phones", link: "/phones" },
-      { label: "Laptops", link: "/laptops" },
-    ],
+    label: "About Us",
+    link: "/about-us",
+  },
+  {
+    label: "FAQ",
+    link: "/faq",
   },
 ];
 
@@ -73,4 +54,12 @@ export const slides = [
     alt: "Modern Shopping",
     id: 4,
   },
+];
+export const brandImages: string[] = [
+  vector1,
+  vector2,
+  vector3,
+  vector4,
+  vector6,
+  vector7,
 ];
