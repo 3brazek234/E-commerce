@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { NavItems } from "../../../Constants";
 import Logo from "../../../ui/Logo";
 import MapComponent from "../../../ui/MapComponent";
@@ -28,11 +29,11 @@ const Footer = () => {
                 key={index}
                 className="text-gray-600 text-sm font-medium cursor-pointer hover:text-purple-600 transition-all duration-300"
               >
-                {item.label}
+            <Link to={item.link}>{item.label}</Link>
               </li>
             ))}
           </ul>
-        </div>
+        </div>  
         <div className="flex flex-col gap-4">
           <h3 className="text-lg font-bold text-gray-800 mr-2 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
             Help
