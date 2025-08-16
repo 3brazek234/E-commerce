@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import type { ApiResponse } from "../types/interfaces";
+import type { Product } from "../types/interfaces";
 import getRelatedProducts from "../services/getRelatedProducts ";
 
-const useRelatedProducts = (category: string) => {
-  const { data, isLoading, error } = useQuery<ApiResponse>({
+const useRelatedProducts = (category: number) => {
+  const { data, isLoading, error } = useQuery<Product[]>({
     queryKey: ["relatedProducts", category],
     queryFn: () => getRelatedProducts(category),
   });

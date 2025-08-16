@@ -131,7 +131,7 @@ const NavBar = () => {
                   />
                 </ListItem>
               ))
-            : data?.categories.map((category: string, i: number) => (
+            : data.map((category: string, i: number) => (
                 <ListItem disablePadding key={i} sx={{ marginBottom: "4px" }}>
                   <ListItemButton
                     onClick={handleClose}

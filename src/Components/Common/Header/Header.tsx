@@ -13,7 +13,6 @@ import useCartStore from "../../../store/Cart";
 import { Link } from "react-router-dom";
 const Header = () => {
   const [toggle, setToggle] = useState<boolean>(false);
-  const [activeSubmenu, setActiveSubmenu] = useState<number | null>(null);
   const [cartToggle, setCartToggle] = useState(false);
   const { cartItem } = useCartStore();
   const [isScroll, setIsScroll] = useState<boolean>(false);

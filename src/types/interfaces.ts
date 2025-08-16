@@ -17,15 +17,13 @@ export interface CountryWithCities {
 export interface Product {
   id: number;
   title: string;
-  image: string;
+  slug: string;
   price: number;
   description: string;
-  brand: string;
-  model: string;
-  color: string;
-  category: string;
-  discount: number;
-  popular?: boolean; // هذا الحقل اختياري بناءً على البيانات
+  category: Category;
+  images: string[];
+  creationAt: string;  // ISO Date
+  updatedAt: string;  // ISO Date
 }
 
 export interface CartItem extends Product {
@@ -39,8 +37,15 @@ export interface ApiResponse {
   products: Product[];
 }
 // types.ts
-export type Filters = {
-  minPrice: number | null;
-  maxPrice: number | null;
-  categories: string[];
-};
+export interface ProductFilters {
+  search?: string;
+  category?: number;
+  maxPrice?: number;
+  minPrice?: number;
+}
+export interface Category {
+  id: number;
+  name: string;
+  image: string;
+  slug: string;
+}

@@ -1,47 +1,37 @@
-import { useMemo, useState } from "react";
+// pages/Product/index.tsx
+import { useState } from "react";
 import Filteration from "../../Components/ProductPage/Filteration";
 import ProductResult from "../../Components/ProductPage/ProductResult";
-import useProductPagination from "../../hooks/useProductPagination";
-import type { Filters } from "../../types/interfaces";
-import type { Product } from "../../types/interfaces";
+import useProductFilter from "../../hooks/useProductFilter";
+import type { ProductFilters } from "../../types/interfaces";
 
 const Product = () => {
-  const [filters, setFilters] = useState<Filters>({
-    minPrice: null,
-    maxPrice: null,
-    categories: [],
-  });
-  const [page, setPage] = useState<number>(1);
-  const { data, isLoading, error } = useProductPagination(page);
-  const products = data?.products;
-  const filteredProducts = useMemo(() => {
-    return products?.filter((p: Product) => {
-      if (filters.minPrice != null && p.price < filters.minPrice) return false;
-      if (filters.maxPrice != null && p.price > filters.maxPrice) return false;
-      if (
-        filters.categories.length > 0 &&
-        !filters.categories.includes(p.category)
-      )
-        return false;
-      return true;
-    });
-  }, [data?.products, filters]);
+  const [page, setPage] = useState(1);
+  const [filters, setFilters] = useState<ProductFilters>({});
 
-  const handleFilterChange = (patch: Partial<Filters>) => {
-    setFilters((prev) => ({ ...prev, ...patch }));
-    setPage(1);
-  };
+  const { data, isLoading, error } = useProductFilter(page, filters);
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
       <div className="border border-gray-200 p-4 rounded-lg col-span-2">
-        <Filteration filters={filters} onFilterChange={handleFilterChange} />
+        <Filteration
+          value={filters}
+          onChange={(patch) => {
+            setFilters(prev => ({ ...prev, ...patch }));
+            setPage(1);
+          }}
+          onClear={() => { setFilters({}); setPage(1); }}
+        />
       </div>
+
       <div className="col-span-3">
         <ProductResult
-          onPageChange={setPage}
-          products={filteredProducts || products || []}
+          products={data?.items || []}
           isLoading={isLoading}
           error={error}
+          page={page}
+          hasNext={!!data?.hasNext}
+          onPageChange={setPage}
         />
       </div>
     </div>

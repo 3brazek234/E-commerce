@@ -4,6 +4,7 @@ import type { Product } from "../../../types/interfaces";
 import { Link } from "react-router-dom";
 import useCartStore from "../../../store/Cart";
 import { toast } from "react-toastify";
+import { RatingStars } from "../../../ui/RatingStars";
 
 interface ProductCardProps {
   product: Product;
@@ -19,7 +20,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const handleLike = () => {
     setIsLiked(!isLiked);
   };
-
+  console.log(product);
   const handleAddToCart = (product: Product) => {
     addItemToCart(product);
     toast.success("Product added to cart");
@@ -27,12 +28,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <>
-      <div className="product-card group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-100 w-full max-w-sm mx-auto">
+      <div className="product-card group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-100 w-full max-w-sm mx-auto flex flex-col justify-between">
         {/* Image Container */}
         <div className="relative overflow-hidden rounded-t-2xl">
           <div className="aspect-square relative">
             <img
-              src={product.image}
+              src={product.images[0]}
               alt={product.title}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
@@ -60,41 +61,46 @@ const ProductCard = ({ product }: ProductCardProps) => {
           >
             <FaHeart className={`text-sm ${isLiked ? "animate-pulse" : ""}`} />
           </button>
-
-          {/* Discount Badge */}
-          {product.discount && (
-            <div className="absolute top-4 right-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-1 text-xs font-bold rounded-full shadow-lg animate-pulse">
-              {product.discount}% OFF
-            </div>
-          )}
         </div>
 
         {/* Content */}
-        <div className="p-5">
+        <div className="flex flex-col gap-1 px-4 py-2">
           {/* Title */}
-          <h3 className="font-bold text-gray-800 mb-3 line-clamp-2 group-hover:text-purple-600 transition-colors duration-300 text-lg leading-tight min-h-[3.5rem]">
+          <h3 className="font-bold text-gray-800 line-clamp-2 group-hover:text-purple-600 transition-colors duration-300 text-lg leading-tight truncate w-48">
             {product.title}
           </h3>
+          {/* slug */}
+          <div className="flex gap-2">
+            <span className="text-gray">Slug:</span>
+            <p className="text-gray-600">{product.slug}</p>
+          </div>
 
+          {/* category */}
+          <div className="flex gap-2 items-center">
+            <span className="text-gray">Category:</span>
+            <button className="px-2 py-1 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white">
+              {product.category.name}
+            </button>
+          </div>
+
+          {/* stock */}
+          <div className="flex gap-2">
+            <span className="text-gray">Stock:</span>
+            <button className="text-gray-600 mb-2">4 items left</button>
+          </div>
           {/* Price */}
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              {product.discount && (
-                <span className="text-sm text-gray-500 line-through">
-                  ${(product.price * (1 + product.discount / 100)).toFixed(2)}
-                </span>
-              )}
               <p className="text-2xl font-bold text-purple-600">
                 ${product.price}
               </p>
+              <p className="text-gray-600 text-sm font-semibold line-through">
+                9%
+              </p>
             </div>
-            {product.discount && (
-              <span className="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded-full">
-                Save ${((product.price * product.discount) / 100).toFixed(2)}
-              </span>
-            )}
           </div>
-
+        </div>
+        <div>
           {/* Add to Cart Button */}
           <button
             onClick={() => handleAddToCart(product)}
@@ -104,7 +110,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <span>Add to Cart</span>
           </button>
         </div>
-
         {/* Hover effect border */}
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none"></div>
       </div>

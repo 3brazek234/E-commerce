@@ -1,57 +1,55 @@
+// Components/ProductPage/Filteration.tsx
 import { FaChevronDown, FaFilter } from "react-icons/fa";
 import { useCategory } from "../../hooks/useCategory";
 import { Checkbox, Typography } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
-import { useState } from "react";
-import type { Filters } from "../../types/interfaces";
+import { useEffect, useState } from "react";
+import type { Category, ProductFilters } from "../../types/interfaces";
+import { useDebounce } from "../../hooks/useDebounce";
 
 type Props = {
-  filters: Filters;
-  onFilterChange: (patch: Partial<Filters>) => void;
+  value: ProductFilters;
+  onChange: (patch: Partial<ProductFilters>) => void;
+  onClear: () => void;
 };
 
-const Filteration: React.FC<Props> = ({ filters, onFilterChange }) => {
+const Filteration: React.FC<Props> = ({ value, onChange, onClear }) => {
   const { data } = useCategory();
 
-  // مدخلات السعر كـ strings ثم نحول عند Apply
-  const [priceRange, setPriceRange] = useState({
-    min: filters.minPrice?.toString() ?? "",
-    max: filters.maxPrice?.toString() ?? "",
-  });
+  const [search, setSearch] = useState<string>(value.search ?? "");
+  const [category, setCategory] = useState<number | undefined>(value.category);
+  const [minPrice, setMinPrice] = useState<string>(value.minPrice?.toString() ?? "");
+  const [maxPrice, setMaxPrice] = useState<string>(value.maxPrice?.toString() ?? "");
 
-  const toggleCategory = (category: string) => {
-    const exists = filters.categories.includes(category);
-    const next = exists
-      ? filters.categories.filter(c => c !== category)
-      : [...filters.categories, category];
+  const debouncedSearch = useDebounce(search, 300);
 
-    onFilterChange({ categories: next });
-  };
+  useEffect(() => {
+    onChange({ search: debouncedSearch });
+  }, [debouncedSearch]);
 
   const applyPrice = () => {
-    const min =
-      priceRange.min.trim() === "" ? null : Number(priceRange.min);
-    const max =
-      priceRange.max.trim() === "" ? null : Number(priceRange.max);
+    const min = minPrice.trim() === "" ? undefined : Number(minPrice);
+    const max = maxPrice.trim() === "" ? undefined : Number(maxPrice);
+    onChange({ minPrice: min, maxPrice: max });
+  };
 
-    // تحقق بسيط: لو min > max بدّلهم أو تجاهل
-    if (min != null && max != null && min > max) {
-      onFilterChange({ minPrice: max, maxPrice: min });
-    } else {
-      onFilterChange({ minPrice: min, maxPrice: max });
-    }
+  const handleCategory = (id: number) => {
+    setCategory(id);
+    onChange({ category: id });
   };
 
   const clearAll = () => {
-    setPriceRange({ min: "", max: "" });
-    onFilterChange({ minPrice: null, maxPrice: null, categories: [] });
+    setSearch("");
+    setCategory(undefined);
+    setMinPrice("");
+    setMaxPrice("");
+    onClear();
   };
 
   return (
     <div className="flex flex-col gap-6 p-6 h-full bg-white rounded-xl shadow-sm border border-gray-100 overflow-y-scroll">
-      {/* Header */}
       <div className="flex items-center justify-between pb-4 border-b-2 border-gradient-to-r from-purple-200 to-pink-200">
         <h2 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
           Filters
@@ -59,6 +57,17 @@ const Filteration: React.FC<Props> = ({ filters, onFilterChange }) => {
         <div className="p-2 bg-gradient-to-r from-purple-100 to-pink-100 rounded-full">
           <FaFilter className="text-purple-600 text-sm" />
         </div>
+      </div>
+
+      {/* Search */}
+      <div className="flex items-center gap-2">
+        <input
+          type="text"
+          placeholder="Search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none text-sm"
+        />
       </div>
 
       {/* Categories */}
@@ -70,12 +79,12 @@ const Filteration: React.FC<Props> = ({ filters, onFilterChange }) => {
         </AccordionSummary>
         <AccordionDetails sx={{ padding: "16px 20px" }}>
           <div className="space-y-3">
-            {data?.categories?.map((category: string) => (
-              <div key={category} className="flex items-center justify-between group hover:bg-purple-50 p-2 rounded-lg transition-all duration-200">
+            {data?.map((c: Category) => (
+              <div key={c.id} className="flex items-center justify-between group hover:bg-purple-50 p-2 rounded-lg transition-all duration-200">
                 <label className="flex items-center cursor-pointer flex-1">
                   <Checkbox
-                    checked={filters.categories.includes(category)}
-                    onChange={() => toggleCategory(category)}
+                    checked={category === c.id}
+                    onChange={() => handleCategory(c.id)}
                     sx={{
                       color: "#9333ea",
                       "&.Mui-checked": { color: "#9333ea" },
@@ -83,7 +92,7 @@ const Filteration: React.FC<Props> = ({ filters, onFilterChange }) => {
                     }}
                   />
                   <span className="text-sm font-medium text-gray-700 group-hover:text-purple-600 transition-colors duration-200 ml-2">
-                    {category}
+                    {c.name}
                   </span>
                 </label>
               </div>
@@ -106,9 +115,9 @@ const Filteration: React.FC<Props> = ({ filters, onFilterChange }) => {
                 <label className="block text-xs font-medium text-gray-600 mb-2">Min Price</label>
                 <input
                   type="number"
-                  placeholder="$0"
-                  value={priceRange.min}
-                  onChange={(e) => setPriceRange(prev => ({ ...prev, min: e.target.value }))}
+                  placeholder="0"
+                  value={minPrice}
+                  onChange={(e) => setMinPrice(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200 text-sm"
                 />
               </div>
@@ -116,9 +125,9 @@ const Filteration: React.FC<Props> = ({ filters, onFilterChange }) => {
                 <label className="block text-xs font-medium text-gray-600 mb-2">Max Price</label>
                 <input
                   type="number"
-                  placeholder="$1000"
-                  value={priceRange.max}
-                  onChange={(e) => setPriceRange(prev => ({ ...prev, max: e.target.value }))}
+                  placeholder="1000"
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200 text-sm"
                 />
               </div>
@@ -133,7 +142,6 @@ const Filteration: React.FC<Props> = ({ filters, onFilterChange }) => {
         </AccordionDetails>
       </Accordion>
 
-      {/* Clear All */}
       <button
         onClick={clearAll}
         className="w-full mt-4 bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 px-4 rounded-lg transition-all duration-200 text-sm font-medium border border-gray-300"
