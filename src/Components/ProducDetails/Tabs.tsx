@@ -61,11 +61,7 @@ export default function BasicTabs({ product }: { product: Product }) {
           </p>
         </div>
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        <div className="mb-6">
-          <li>Color: {product.color}</li>
-        </div>
-      </CustomTabPanel>
+      
       <CustomTabPanel value={value} index={2}>
         <div className="mb-6">
           <p className="text-gray-500 font-light text-base leading-relaxed">

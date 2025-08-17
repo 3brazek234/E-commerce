@@ -4,7 +4,6 @@ import type { Product } from "../../../types/interfaces";
 import { Link } from "react-router-dom";
 import useCartStore from "../../../store/Cart";
 import { toast } from "react-toastify";
-import { RatingStars } from "../../../ui/RatingStars";
 
 interface ProductCardProps {
   product: Product;
@@ -20,7 +19,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const handleLike = () => {
     setIsLiked(!isLiked);
   };
-  console.log(product);
   const handleAddToCart = (product: Product) => {
     addItemToCart(product);
     toast.success("Product added to cart");

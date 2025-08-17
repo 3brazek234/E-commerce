@@ -53,7 +53,7 @@ const Cart= ({ setCartToggle }: { setCartToggle: (value: boolean) => void }) => 
                 {/* Product Image */}
                 <div className="relative">
                   <img
-                    src={item.image}
+                    src={item.images[0]}
                     alt={item.title}
                     className="w-20 h-20 object-cover rounded-xl shadow-md group-hover:scale-105 transition-transform duration-300"
                   />
@@ -73,7 +73,7 @@ const Cart= ({ setCartToggle }: { setCartToggle: (value: boolean) => void }) => 
 
                   <div className="flex items-center gap-2">
                     <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full font-medium">
-                      {item.category}
+                      {item.category.name}
                     </span>
                   </div>
 
@@ -95,7 +95,7 @@ const Cart= ({ setCartToggle }: { setCartToggle: (value: boolean) => void }) => 
                       <span className="font-bold text-gray-800 min-w-[20px] text-center">
                         {item.quantity}
                       </span>
-                      <button onClick={() => updateItemQuantity(item.id, item.quantity + 1)} disabled={item.quantity === item.stock} className="w-8 h-8 bg-purple-600 hover:bg-purple-700 text-white rounded-full flex items-center justify-center transition-colors duration-200 hover:scale-110 transform">
+                      <button onClick={() => updateItemQuantity(item.id, item.quantity + 1)}  className="w-8 h-8 bg-purple-600 hover:bg-purple-700 text-white rounded-full flex items-center justify-center transition-colors duration-200 hover:scale-110 transform">
                         <FaPlus className="text-xs" />
                       </button>
                     </div>

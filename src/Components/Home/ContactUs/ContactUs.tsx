@@ -1,40 +1,9 @@
 import { useState } from 'react';
 import HeroSection from "../../Common/Hero/HeroSection";  
-import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import SocialMediaIcons from '../../../ui/SocialMediaIcons';
 
-const contactLinks = [
-  {
-    label: "Facebook",
-    icon: <FaFacebook className="text-blue-600" />,
-    url: "#"
-  },
-  {
-    label: "Instagram",
-    icon: <FaInstagram className="text-pink-600" />,
-    url: "#"
-  },
-  {
-    label: "Twitter",
-    icon: <FaTwitter className="text-blue-400" />,
-    url: "#"
-  },
-  {
-    label: "Linkedin",
-    icon: <FaLinkedin className="text-blue-700" />,
-    url: "#"
-  },
-  {
-    label: "Email",
-    icon: <FaEnvelope className="text-red-500" />,
-    url: "mailto:contact@example.com"
-  },
-  {
-    label: "Phone",
-    icon: <FaPhone className="text-green-600" />,
-    url: "tel:+1234567890"
-  }
-];
+
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({

@@ -49,3 +49,11 @@ export interface Category {
   image: string;
   slug: string;
 }
+export interface ModelProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  children: React.ReactNode;
+  size?: "sm" | "md" | "lg";
+  bgColor?: string;
+}

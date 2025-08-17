@@ -1,6 +1,5 @@
 import { GiShoppingCart } from "react-icons/gi";
 import SearchNav from "../../../ui/SearchNav";
-import LocationButton from "../../../ui/LocationButton";
 import { IoMenu } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { NavItems } from "../../../Constants";
@@ -53,7 +52,6 @@ const Header = () => {
 
             {/* Search and Location */}
             <div className="flex-1 flex gap-4 items-center max-w-4xl">
-              <LocationButton />
               <SearchNav />
             </div>
 
@@ -126,7 +124,6 @@ const Header = () => {
 
           {/* Search Bar */}
           <div className="flex items-center gap-3 mt-3">
-            <LocationButton />
             <SearchNav />
           </div>
         </div>
@@ -154,11 +151,10 @@ const Header = () => {
                   <MdOutlineKeyboardDoubleArrowLeft className="w-6 h-6" />
                 </div>
               </div>
-              <LocationButton />
               <AuthBns />
               <nav>
                 <ul>
-                  {NavItems.map((item, idx) => (
+                  {NavItems.map((item) => (
                     <div key={item.label} className="mb-2">
                       <Link to={item.link}>
                         <li

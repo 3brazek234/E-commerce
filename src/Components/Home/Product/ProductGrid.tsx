@@ -3,7 +3,7 @@ import CardSwiper from "../../../ui/CardSwiper";
 import useHomeProduct from "../../../hooks/useHomeProduct";
 import HomeCategory from "../HomeCategory/HomeCategory";
 const ProductGrid = () => {
-  const { data, isLoading, error } = useHomeProduct();
+  const { data } = useHomeProduct();
   return (
     <div className="min-h-screen bg-gray-50 p-8 main-container ">
       <div className="max-w-7xl mx-auto">

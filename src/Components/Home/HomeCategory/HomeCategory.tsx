@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useCategory } from "../../../hooks/useCategory";
 import useRelatedProducts from "../../../hooks/useRelatedProducts";
 import ProductCard from "../Product/ProductCard";
+import type { Product } from "../../../types/interfaces";
 
 export default function HomeCategory() {
   const { data, isLoading, isError } = useCategory();
@@ -15,7 +16,7 @@ export default function HomeCategory() {
     data: relatedData,
     isLoading: isRelatedLoading,
     error: isRelatedError,
-  } = useRelatedProducts(selectedCategory);
+  } = useRelatedProducts(selectedCategory) as { data: Product[]; isLoading: boolean; error: Error | null };
   console.log(relatedData, isRelatedLoading, isRelatedError, "relatedData");
   return (
     <div className="flex flex-col gap-4">

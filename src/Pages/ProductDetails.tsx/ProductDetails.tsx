@@ -3,7 +3,7 @@ import useSingleProduct from "../../hooks/useSingleProduct";
 import ZoomImg from "../../ui/ZoomImg";
 import React, { Suspense } from "react";
 import useRelatedProducts from "../../hooks/useRelatedProducts";
-import { Skeleton } from "@mui/material"; // استيراد Skeleton من Material UI
+import { Skeleton } from "@mui/material"; 
 import { FaShoppingCart } from "react-icons/fa";
 import BasicTabs from "../../Components/ProducDetails/Tabs";
 
@@ -137,7 +137,7 @@ const ProductDetails = () => {
       <div className="max-w-4xl mx-auto p-6 mt-12">
         <Suspense fallback={<div>Loading related products...</div>}>
           <CardSwiper
-            items={relatedProducts?.products?.slice(0, 10) || []}
+            items={relatedProducts?.slice(0, 10) || []}
             title="PRODUCTS YOU MAY LIKE"
             description="Explore more products from the same category."
           />

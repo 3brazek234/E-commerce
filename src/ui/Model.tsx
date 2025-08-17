@@ -1,6 +1,6 @@
 import { type FC } from "react";
-import type { ModelProps } from "../Constants/interfaces";
 import { IoClose } from "react-icons/io5";
+import type { ModelProps } from "../types/interfaces";
 
 const Modal: FC<ModelProps> = ({
   isOpen,
