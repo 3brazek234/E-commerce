@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { NavItems } from "../../../Constants";
 import Logo from "../../../ui/Logo";
-import MapComponent from "../../../ui/MapComponent";
+
 import SocialMediaIcons from "../../../ui/SocialMediaIcons";
 const Footer = () => {
   return (
@@ -52,9 +52,6 @@ const Footer = () => {
               FAQ
             </li>
           </ul>
-        </div>
-        <div className="flex flex-col gap-4">
-            <MapComponent/>
         </div>
       </div>
     </div>

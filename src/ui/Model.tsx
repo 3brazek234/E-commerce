@@ -8,7 +8,6 @@ const Modal: FC<ModelProps> = ({
   title,
   children,
   size = "md",
-  bgColor = "bg-white",
 }) => {
   if (!isOpen) return null;
 

@@ -1,6 +1,4 @@
-import { MdKeyboardArrowDown } from "react-icons/md";
 import { useState, useEffect } from "react";
-import { useCategory } from "../../../hooks/useCategory";
 import { NavItems } from "../../../Constants";
 import { Link } from "react-router-dom";
 
