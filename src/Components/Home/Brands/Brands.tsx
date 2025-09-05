@@ -1,4 +1,4 @@
-import { brandImages } from "../../../Constants/index.ts";
+import { brandImages } from "../../../Constants/index";
 import "./brands.css";
 
 export const Brands = () => {
