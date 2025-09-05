@@ -1,4 +1,4 @@
-interface Product {
+export interface Product {
   id: number;
   name: string;
   category: 'clothing' | 'electronics';
@@ -8,6 +8,18 @@ interface Product {
   brand: string;
   rating: number;
   inStock: boolean;
+}
+
+export interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  content: string;
+  image: string;
+  author: string;
+  date: string;
+  category: string;
+  readTime: string;
 }
 
 export const products: Product[] = [
@@ -120,5 +132,74 @@ export const products: Product[] = [
     brand: "TechWear",
     rating: 4.7,
     inStock: true,
+  }
+];
+
+export const blogPosts: BlogPost[] = [
+  {
+    id: 1,
+    title: "The Future of E-commerce: Trends to Watch in 2024",
+    excerpt: "Discover the latest trends shaping the future of online shopping and how they'll impact your business.",
+    content: "The e-commerce landscape continues to evolve at a rapid pace, with new technologies and consumer behaviors emerging constantly. In 2024, we're seeing several key trends that are set to transform the industry...",
+    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1000&auto=format",
+    author: "Sarah Johnson",
+    date: "2024-02-15",
+    category: "E-commerce",
+    readTime: "5 min read"
+  },
+  {
+    id: 2,
+    title: "Sustainable Fashion: Why It Matters More Than Ever",
+    excerpt: "Exploring the importance of sustainable practices in the fashion industry and how consumers can make a difference.",
+    content: "As environmental concerns continue to grow, the fashion industry is under increasing pressure to adopt more sustainable practices. From water conservation to ethical labor practices, sustainability is no longer optional...",
+    image: "https://images.unsplash.com/photo 1600607686527-6fb886090705?w=1000&auto=format",
+    author: "Michael Chen",
+    date: "2024-02-10",
+    category: "Fashion",
+    readTime: "4 min read"
+  },
+  {
+    id: 3,
+    title: "Tech Gadgets That Will Transform Your Daily Life",
+    excerpt: "A roundup of the most innovative tech gadgets that are making waves this year.",
+    content: "From smart home devices to wearable tech, 2024 is bringing us some of the most innovative gadgets we've ever seen. These devices aren't just cool—they're designed to make your life easier, more efficient, and more connected...",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&auto=format",
+    author: "David Kim",
+    date: "2024-02-05",
+    category: "Technology",
+    readTime: "6 min read"
+  },
+  {
+    id: 4,
+    title: "The Art of Minimalist Living: Less is More",
+    excerpt: "How adopting a minimalist approach can lead to a more fulfilling and intentional lifestyle.",
+    content: "In a world of constant consumption and digital overload, many are finding peace in minimalism. This lifestyle choice isn't just about having fewer possessions—it's about making room for what truly matters...",
+    image: "https://images.unsplash.com/photo-1513519245088-0e12902d5e98?w=1000&auto=format",
+    author: "Emma Wilson",
+    date: "2024-01-28",
+    category: "Lifestyle",
+    readTime: "7 min read"
+  },
+  {
+    id: 5,
+    title: "Smart Home Automation: Where to Start",
+    excerpt: "A beginner's guide to transforming your home with smart technology.",
+    content: "Smart home technology has come a long way in recent years, and it's now more accessible than ever. Whether you're looking to enhance security, save energy, or simply add convenience to your daily routine, there's a smart home solution for you...",
+    image: "https://images.unsplash.com/photo-1558002038-1055907df827?w=1000&auto=format",
+    author: "Robert Taylor",
+    date: "2024-01-20",
+    category: "Technology",
+    readTime: "8 min read"
+  },
+  {
+    id: 6,
+    title: "The Rise of Sustainable Packaging in E-commerce",
+    excerpt: "How online retailers are reducing their environmental impact through innovative packaging solutions.",
+    content: "As e-commerce continues to grow, so does the environmental impact of packaging waste. Forward-thinking companies are now leading the way with sustainable packaging solutions that don't compromise on protection or customer experience...",
+    image: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=1000&auto=format",
+    author: "Lisa Park",
+    date: "2024-01-15",
+    category: "E-commerce",
+    readTime: "5 min read"
   }
 ];

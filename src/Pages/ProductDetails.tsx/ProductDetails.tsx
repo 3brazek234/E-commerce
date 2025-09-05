@@ -1,9 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import useSingleProduct from "../../hooks/useSingleProduct";
 import ZoomImg from "../../ui/ZoomImg";
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import useRelatedProducts from "../../hooks/useRelatedProducts";
-import { Skeleton } from "@mui/material"; 
+import { Skeleton } from "@mui/material";
 import { FaShoppingCart } from "react-icons/fa";
 import BasicTabs from "../../Components/ProducDetails/Tabs";
 
@@ -13,8 +13,15 @@ const ProductDetails = () => {
   const { id } = useParams<{ id: string }>();
   const { data, isLoading, error } = useSingleProduct(id!);
   const { data: relatedProducts, isLoading: isRelatedLoading } =
-    useRelatedProducts(data?.product.category || "");
-
+    useRelatedProducts(data?.category.id);
+  const [selectedImage, setSelectedImage] = useState<string>("");
+  
+  // Update selectedImage when data is loaded
+  React.useEffect(() => {
+    if (data?.images?.length > 0) {
+      setSelectedImage(data.images[0]);
+    }
+  }, [data]);
   if (isLoading) {
     return (
       <div className="max-w-4xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white shadow-lg rounded-lg">
@@ -39,7 +46,7 @@ const ProductDetails = () => {
     );
   }
 
-  if (error || !data?.product) {
+  if (error || !data) {
     return (
       <div className="text-center text-red-600 py-12">
         Failed to load product details.
@@ -53,10 +60,10 @@ const ProductDetails = () => {
       </div>
     );
   }
-  const { title, image, category, price, brand, model } = data.product;
+  const { title, images, category, price } = data;
   const breadcrumbItems = [
     { label: "Home", path: "/" },
-    { label: category, path: "/men" },
+    { label: category.name, path: "/men" },
     { label: title.slice(0, 8) },
   ];
   return (
@@ -64,11 +71,24 @@ const ProductDetails = () => {
       <div className="max-w-4xl mt-12 mx-auto p-6 grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white shadow-lg rounded-lg">
         {/* Left: Zoomable Image */}
         <div className="w-full">
-          {/* استخدم Skeleton للصورة أثناء التحميل */}
+        
           {isLoading ? (
             <Skeleton variant="rectangular" width="100%" height={300} />
           ) : (
-            <ZoomImg src={image} alt={title} />
+       <>
+            <ZoomImg src={selectedImage} alt={title} />
+            <div className="flex gap-2">
+            {images.map((image: string, index: number) => (
+              <img
+                key={index}
+                src={image}
+                alt={title}
+                className="w-24 h-24 object-cover cursor-pointer rounded-lg"
+                onClick={() => setSelectedImage(image)}
+              />
+            ))}
+            </div>
+       </>
           )}
         </div>
 
@@ -98,21 +118,37 @@ const ProductDetails = () => {
           {/* Brand / Model / Category Tags */}
           <div className="flex flex-wrap gap-2 mb-6">
             <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">
-              Brand: {brand}
+              Brand: NEW
             </span>
             <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm font-medium">
-              Model: {model}
+              Model: NEW
             </span>
             <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">
-              Category: {category}
+              Category: {category.name}
             </span>
           </div>
 
           {/* Price */}
-          <p className="text-2xl font-extrabold text-indigo-600 mb-8">
-            ${price}
-          </p>
-
+          <p className="text-2xl font-extrabold text-indigo-600">${price}</p>
+          <div className="flex items-center border border-gray-300 rounded hover:scale-105 transition-all duration-300 cursor-pointer w-full gap-2 my-4">
+            <div>
+              <img
+                src={category.image}
+                alt={category.id}
+                className="h-16 rounded"
+              />
+            </div>
+            <div>
+              <div className="flex gap-2 items-center">
+                <p className="text-gray-600">Category:</p>
+                <p className="text-sm font-semibold">{category.name}</p>
+              </div>
+              <div className="flex gap-2 items-center">
+                <p className="text-gray-600">Slug:</p>
+                <p className="text-sm font-semibold">{category.slug}</p>
+              </div>
+            </div>
+          </div>
           <div className="flex items-center gap-4">
             {/* Quantity Selector */}
             <div className="flex items-center border border-gray-300 rounded">
@@ -130,7 +166,7 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className="max-w-4xl mx-auto p-6 mt-12">
-        <BasicTabs product={data.product} />
+        <BasicTabs product={data} />
       </div>
 
       {/* Related Products Section */}

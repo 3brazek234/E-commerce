@@ -17,10 +17,13 @@ const Product = () => {
         <Filteration
           value={filters}
           onChange={(patch) => {
-            setFilters(prev => ({ ...prev, ...patch }));
+            setFilters((prev) => ({ ...prev, ...patch }));
             setPage(1);
           }}
-          onClear={() => { setFilters({}); setPage(1); }}
+          onClear={() => {
+            setFilters({});
+            setPage(1);
+          }}
         />
       </div>
 

@@ -25,7 +25,10 @@ const AuthBns = () => {
         <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Email
               </label>
               <input
@@ -40,7 +43,10 @@ const AuthBns = () => {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Password
               </label>
               <input
@@ -63,11 +69,17 @@ const AuthBns = () => {
                 type="checkbox"
                 className="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
               />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+              <label
+                htmlFor="remember-me"
+                className="ml-2 block text-sm text-gray-700"
+              >
                 Remember me
               </label>
             </div>
-            <button type="button" className="text-sm font-medium text-purple-600 hover:text-purple-500">
+            <button
+              type="button"
+              className="text-sm font-medium text-purple-600 hover:text-purple-500"
+            >
               Forgot password?
             </button>
           </div>
@@ -83,7 +95,10 @@ const AuthBns = () => {
 
           <div className="text-center text-sm">
             <span className="text-gray-600">Don't have an account? </span>
-            <button type="button" className="font-medium text-purple-600 hover:text-purple-500">
+            <button
+              type="button"
+              className="font-medium text-purple-600 hover:text-purple-500"
+            >
               Sign up
             </button>
           </div>

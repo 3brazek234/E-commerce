@@ -1,38 +1,20 @@
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import 'swiper/css/autoplay';
-import { slides } from "../Constants";
+import heroImg from "../assets/Main-swiper/swiper.jpg"
 
 const SwiperComponent = () => {
 
 
   return (
-    <div className="swiper-container">
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
-        slidesPerView={1}
-        centeredSlides={true}
-        spaceBetween={30}
-        pagination={{
-          type: "fraction",
-        }}
-        navigation={true}
-        className="mySwiper"
-        loop={true}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
-      >
-        {slides.map((slide) => (
-          <SwiperSlide key={slide.id}>
-            <img src={slide.src} alt={slide.alt} className="swiper-image" />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <div className="w-full h-4/6 object-contain overflow-hidden relative">
+      <img
+        src={heroImg}
+        alt="Swiper Image 1"
+        className="heroImg"
+      />
+
+      <div className="absolute top-1/4 left-3/4 ">
+        <h2 className="text-white text-3xl font-bold"></h2>
+        <p className="text-white mt-2">Discover the best products at unbeatable prices.</p>
+      </div>
     </div>
   );
 };

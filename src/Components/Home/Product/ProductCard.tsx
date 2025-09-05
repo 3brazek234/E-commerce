@@ -26,7 +26,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <>
-      <div className="product-card group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-100 w-full max-w-sm mx-auto flex flex-col justify-between">
+      <div className="product-card p-2 group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-100 w-full max-w-sm mx-auto flex flex-col justify-between">
         {/* Image Container */}
         <div className="relative overflow-hidden rounded-t-2xl">
           <div className="aspect-square relative">
@@ -70,7 +70,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           {/* slug */}
           <div className="flex gap-2">
             <span className="text-gray">Slug:</span>
-            <p className="text-gray-600">{product.slug}</p>
+            <p className="text-gray-600">{product.slug.slice(0, 10)}</p>
           </div>
 
           {/* category */}

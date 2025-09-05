@@ -25,7 +25,6 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  console.log(cartItem);
 
   return (
     <>
@@ -92,17 +91,14 @@ const Header = () => {
           <div
             className={`${
               isScroll
-                ? "fixed top-0 left-0 w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white z-50 transition-all duration-300 shadow-xl py-4 backdrop-blur-sm"
+                ? "fixed top-0 left-0 w-full  text-white z-50 transition-all duration-300 shadow-xl py-4 backdrop-blur-sm"
                 : "py-6"
             } flex items-center justify-between`}
           >
             <Logo />
 
             <div className="flex items-center gap-3">
-              <button className="flex items-center gap-2 bg-[#7A55C1] hover:bg-[#6A48AA] text-white py-1.5 px-4 rounded-full text-sm font-medium transition-all duration-300">
-                Sign in
-              </button>
-
+    
               <div
                 className="relative cursor-pointer"
                 onClick={() => setCartToggle(true)}
@@ -131,7 +127,7 @@ const Header = () => {
 
       {toggle && (
         <>
-          <div className="fixed inset-0 z-10 bg-black/70 w-full h-full block md:hidden">
+          <div className="fixed inset-0 z-10 bg-black/70 w-full h-full block md:hidden" onClick={() => setToggle(false)}>
             <div
               className="
           h-screen bg-white w-4/5 p-6 flex flex-col gap-6 relative

@@ -20,7 +20,6 @@ const NavBar = () => {
 
   return (
     <>
-      {/* Sticky/Fixed Navbar */}
       <div
         className={`${
           isScrolled
@@ -29,7 +28,7 @@ const NavBar = () => {
         } w-full bg-white/95 backdrop-blur-md border-b border-gray-200 transition-all duration-500 ease-in-out`}
       >
         <nav className="hidden md:block">
-          <div className="container mx-auto px-4 py-3 flex items-center gap-6">
+          <div className="container mx-auto px-4 py-3 flex items-center gap-6 justify-center">
             
             <ul className="flex items-center gap-6">
               {NavItems.map((item, index) => (
@@ -50,8 +49,8 @@ const NavBar = () => {
       {/* Regular Navbar */}
       <div className="w-full bg-white shadow-lg border-t border-gray-100">
         <nav className="hidden md:block">
-          <div className="container mx-auto px-4 py-4 flex items-center gap-6">
-            <ul className="flex items-center gap-8">
+          <div className="container mx-auto px-4 py-4 flex items-center gap-6 justify-center">
+            <ul className="flex items-center gap-8 ">
               {NavItems.map((item, index) => (
                 <li key={index}>
                   <Link to={item.link}>

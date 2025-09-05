@@ -6,6 +6,8 @@ import Product from "../Pages/Product/Product";
 import Faq from "../Pages/Faq/Faq";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import ContactUs from "../Components/Home/ContactUs/ContactUs";
+import Blogs from "../Pages/Blogs/Blogs";
+import Order from "../Pages/orders/Order";
 
 const routes = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ const routes = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactUs />,
+      },
+      {
+        path: "/blog",
+        element: <Blogs />,
+      },
+      {
+        path: "/order-tracking",
+        element: <Order />,
       },
     ],
   },
